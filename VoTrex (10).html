@@ -260,7 +260,7 @@ input,textarea,select{font-family:'Nunito',sans-serif}
 #stB.on{bottom:-3px;background:var(--grn)}
 #stB.off{bottom:-3px;background:#6b7280}
 #stB.away{top:-3px;background:var(--s1);color:var(--red)}
-#deleteBtn{display:none!important}
+
 .vcard.real .vthumb{aspect-ratio:9/16;max-height:420px}
 .kind-tag{position:absolute;top:7px;right:7px;background:rgba(0,0,0,.75);color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px}
 .pcard{background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:14px;cursor:pointer;transition:transform .2s}
@@ -428,6 +428,54 @@ html[data-device="phone"] #aside,html[data-device="tablet"] #aside{box-shadow:8p
 </style>
 <style>
 #emptyMsg{display:none!important}
+</style>
+<style>
+.cover-pick{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px dashed var(--bdr);border-radius:14px;background:var(--s2);cursor:pointer;font-size:13px;font-weight:700;transition:border-color .2s,background .2s}
+.cover-pick:hover{border-color:#6366f1;background:#6366f114}
+.cover-pick .cp-ico{font-size:20px}
+.cover-pick img{display:none;margin-inline-start:auto;width:72px;height:44px;object-fit:cover;border-radius:8px}
+input[type=file].fi::file-selector-button{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:10px;padding:8px 14px;margin-inline-end:10px;font-weight:800;cursor:pointer}
+#progWrap{height:8px;border-radius:6px}
+#progBar{transition:width .3s}
+</style>
+<style>#adOverlay{display:none!important}</style>
+<style>
+#offBar{position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:360;background:#f59e0b;color:#000;font-weight:800;font-size:12px;padding:6px 16px;border-radius:20px;box-shadow:0 4px 14px #0006;direction:rtl}
+</style>
+<style>
+/* ── Reals (Shorts-style) ── */
+#realsShelf{display:none;margin:4px 0 22px}
+#realsShelf .sh-h{font-size:18px;font-weight:900;margin-bottom:10px;direction:rtl}
+#realsShelf .sh-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity}
+.rcard{flex:0 0 160px;cursor:pointer;scroll-snap-align:start}
+.rthumb{aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:var(--s2);position:relative}
+.rthumb>*{width:100%;height:100%;object-fit:cover}
+.rthumb .vph{display:flex;align-items:center;justify-content:center;font-size:40px}
+.rcard .rc-t{font-size:13px;font-weight:800;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rcard .rc-v{font-size:11px;color:var(--mut);font-weight:700}
+#rlOv{position:fixed;inset:0;z-index:450;background:#000;display:none}
+#rlOv.on{display:block}
+.rl-scroll{height:100%;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
+.rl-scroll::-webkit-scrollbar{display:none}
+.rl-item{height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center;position:relative}
+.rl-box{position:relative;height:100%;max-height:100vh;aspect-ratio:9/16;max-width:100vw;background:#000;overflow:hidden}
+.rl-box video{width:100%;height:100%;object-fit:contain;background:#000}
+.rl-info{position:absolute;left:0;right:70px;bottom:0;padding:70px 14px 18px;background:linear-gradient(transparent,#000c);color:#fff;direction:rtl;pointer-events:none}
+.rl-info b{font-size:14px}.rl-info p{font-size:13px;margin-top:4px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rl-acts{position:absolute;right:8px;bottom:90px;display:flex;flex-direction:column;gap:14px;align-items:center;z-index:3}
+.rl-acts button{width:48px;height:48px;border-radius:50%;border:none;background:#ffffff26;color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.rl-acts button small{font-size:10px;font-weight:800;margin-top:2px}
+.rl-acts button.on{background:#ef4444}
+.rl-prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:#ffffff33;z-index:4}
+.rl-prog i{display:block;height:100%;width:0;background:#fff}
+.rl-ico{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.6);font-size:64px;opacity:0;pointer-events:none;color:#fff;transition:all .3s}
+.rl-ico.show{opacity:.9;transform:translate(-50%,-50%) scale(1)}
+.rl-close{position:fixed;top:14px;left:14px;z-index:460;width:44px;height:44px;border-radius:50%;border:none;background:#ffffff26;color:#fff;font-size:20px;cursor:pointer}
+.rl-nav{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:460;display:flex;flex-direction:column;gap:12px}
+.rl-nav button{width:46px;height:46px;border-radius:50%;border:none;background:#ffffff26;color:#fff;font-size:18px;cursor:pointer}
+html[data-device="phone"] .rl-nav{display:none}
+html[data-device="phone"] .rl-box{aspect-ratio:auto;width:100vw}
+#vidErr{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;background:#000d;color:#fff;font-weight:700;font-size:14px;line-height:1.8;z-index:6;direction:rtl}
 </style>
 </head>
 <body>
@@ -640,22 +688,22 @@ html[data-device="phone"] #aside,html[data-device="tablet"] #aside{box-shadow:8p
         ondragover="event.preventDefault();this.classList.add('drag')"
         ondragleave="this.classList.remove('drag')"
         ondrop="handleDrop(event)">
-        <div class="uai">🎮</div>
-        <div style="font-size:15px;font-weight:800">Drag your Roblox clip here</div>
-        <div style="font-size:12px;color:var(--mut);margin-top:5px;font-weight:600">MP4 · WebM · MOV — saved permanently!</div>
+        <div class="uai">🎬</div>
+        <div style="font-size:15px;font-weight:800">اسحب الفيديو هنا أو دوس للاختيار</div>
+        <div style="font-size:12px;color:var(--mut);margin-top:5px;font-weight:600">MP4 · WebM · MOV — بيتحفظ للأبد</div>
       </div>
       <input type="file" id="fInp" accept="video/*" style="display:none" onchange="onFileChg(event)"/>
       <div id="fPrv" style="display:none" class="fprv">
         <video id="tpv" class="tpv" muted></video>
         <div style="flex:1"><div id="fName" style="font-weight:700;font-size:13px;margin-bottom:2px"></div><div id="fSz" style="color:var(--mut);font-size:12px"></div></div>
-        <div style="color:#22c55e;font-weight:800;font-size:12px">✓ Ready</div>
+        <div style="color:#22c55e;font-weight:800;font-size:12px">✓ جاهز</div>
       </div>
       <div class="prog-wrap" id="progWrap"><div class="prog-bar" id="progBar"></div></div>
       <div class="prog-txt" id="progTxt"></div>
       <div class="fg" style="margin-top:16px"><label>النوع</label><select class="fi" id="upKind"><option value="bvideo">Bvideo — فيديو طويل</option><option value="real">Real — فيديو قصير (حتى 2:50)</option></select></div>
-      <div class="fg"><label>صورة الغلاف (اختياري — وإلا تؤخذ من منتصف الفيديو)</label><input type="file" accept="image/*" class="fi" onchange="setCover(event)"/></div>
+      <div class="fg"><label>صورة الغلاف (اختياري — وإلا تؤخذ من منتصف الفيديو)</label><label class="cover-pick"><input type="file" accept="image/*" onchange="setCover(event)" hidden><span class="cp-ico">🖼</span><span id="cpTxt">اختر صورة الغلاف</span><img id="coverPrv" alt=""></label></div>
       <div class="fg"><label>Title *</label><input class="fi" id="upTitle" placeholder="عنوان الفيديو..."/></div>
-      <div class="fg"><label>Description</label><textarea class="fi fta" id="upDesc" placeholder="What's this clip about?"></textarea></div>
+      <div class="fg"><label>Description</label><textarea class="fi fta" id="upDesc" placeholder="اوصف الفيديو..."></textarea></div>
       <select id="upCat" style="display:none"><option value="all">all</option></select>
       <div class="fg"><label>Channel</label><select class="fi" id="upCh"></select></div>
       <button class="fbtn" id="uploadFbtn" onclick="doUpload()">🚀 Save Video Permanently</button>
@@ -702,7 +750,7 @@ html[data-device="phone"] #aside,html[data-device="tablet"] #aside{box-shadow:8p
     <button class="aadd" onclick="toggleAddAcc()">➕ Add Another Account</button>
     <div id="addAccFrm" style="display:none;margin-top:14px;border-top:1px solid var(--bdr);padding-top:16px">
       <div class="fg"><label>Display Name *</label><input class="fi" id="newName" placeholder="e.g. ProGamer123"/></div>
-      <div class="fg"><label>Channel Name (optional)</label><input class="fi" id="newChName" placeholder="e.g. My Roblox Channel"/></div>
+      <div class="fg"><label>Channel Name (optional)</label><input class="fi" id="newChName" placeholder="e.g. My Channel"/></div>
       <button class="fbtn" onclick="createAcc()">Create Account ✓</button>
     </div>
   </div>
@@ -713,7 +761,7 @@ html[data-device="phone"] #aside,html[data-device="tablet"] #aside{box-shadow:8p
   <div class="modal">
     <button class="mcls" onclick="closeOv('chOv')">✕</button>
     <h2>📺 Create Channel</h2>
-    <div class="fg"><label>Channel Name *</label><input class="fi" id="chNm" placeholder="e.g. Pro Roblox Clips"/></div>
+    <div class="fg"><label>Channel Name *</label><input class="fi" id="chNm" placeholder="e.g. Pro Clips"/></div>
     <div class="fg"><label>Description</label><textarea class="fi fta" id="chDsc" placeholder="What's your channel about?"></textarea></div>
     <div class="fg" style="display:flex;align-items:center;gap:12px"><label style="margin:0">Color</label><input type="color" id="chClr" value="#6366f1" style="width:52px;height:36px;border:none;border-radius:8px;cursor:pointer;background:none"/></div>
     <button class="fbtn" onclick="createCh()">Create Channel 🎉</button>
@@ -1309,7 +1357,7 @@ function onFileChg(e){
   document.getElementById('fName').textContent=file.name.length>30?file.name.slice(0,30)+'...':file.name;
   document.getElementById('fSz').textContent=(file.size/1024/1024).toFixed(1)+' MB';
   if(!document.getElementById('upTitle').value)document.getElementById('upTitle').value=file.name.replace(/\.[^.]+$/,'');
-  const tmp=document.createElement('video');tmp.src=url;tmp.muted=true;tmp.onloadedmetadata=()=>{selFileDur=tmp.duration;tmp.currentTime=tmp.duration/2};tmp.onseeked=()=>{if(window._coverUser)return;try{const c=document.createElement('canvas');c.width=480;c.height=Math.round(480*tmp.videoHeight/tmp.videoWidth)||270;c.getContext('2d').drawImage(tmp,0,0,c.width,c.height);window._cover=c.toDataURL('image/jpeg',.7)}catch(e){}};
+  const tmp=document.createElement('video');tmp.src=url;tmp.muted=true;tmp.onloadedmetadata=()=>{selFileDur=tmp.duration;tmp.currentTime=tmp.duration/2};tmp.onseeked=()=>{if(window._coverUser)return;try{const c=document.createElement('canvas');c.width=480;c.height=Math.round(480*tmp.videoHeight/tmp.videoWidth)||270;c.getContext('2d').drawImage(tmp,0,0,c.width,c.height);window._cover=c.toDataURL('image/jpeg',.7);const pv=document.getElementById('coverPrv');if(pv){pv.src=window._cover;pv.style.display='block'}}catch(e){}};
 }
 function handleDrop(e){
   e.preventDefault();document.getElementById('uArea').classList.remove('drag');
@@ -2554,6 +2602,365 @@ renderGrid=function(t,v){
 <script>
 // each viewer (account) counts once per video
 function markViewed(id){const a=getCurAcc();a.viewed=a.viewed||[];if(a.viewed.includes(id))return false;a.viewed.push(id);return true}
+</script>
+
+<script>
+// every account gets a default channel so uploading always works
+async function ensureChannel(){
+  const a=getCurAcc();if(!a)return;
+  a.channels=a.channels||[];
+  if(a.channels.some(id=>db.channels.some(c=>c.id===id)))return;
+  const ch={id:'ch'+Date.now(),name:a.name,desc:'',color:'#6366f1',owner:a.id,subs:0};
+  db.channels.push(ch);a.channels.push(ch.id);await saveMeta();renderAside();
+}
+const _ou3=openUpload;
+openUpload=async function(){await ensureChannel();_ou3()};
+// working download button
+doDownload=async function(){
+  const v=getVid(curVid);if(!v)return;
+  db.downloads=db.downloads||[];if(!db.downloads.includes(v.id))db.downloads.unshift(v.id);
+  await saveMeta();
+  if(v.type!=='local'){toast('ℹ️ فيديوهات يوتيوب ما بتتنزلش — اتضافت لعمليات التنزيل بس');return}
+  let url=blobCache[v.id],ext='mp4';
+  if(!url){const r=await idbGet('videos',v.id);if(r&&r.blob){url=blobCache[v.id]=URL.createObjectURL(r.blob);ext=(r.blob.type.split('/')[1]||'mp4').replace('quicktime','mov')}}
+  if(!url){toast('❌ ملف الفيديو مش موجود على الجهاز ده');return}
+  const a=document.createElement('a');a.href=url;a.download=(v.title||'video')+'.'+ext;document.body.appendChild(a);a.click();a.remove();
+  toast('⬇ بدأ التنزيل');
+};
+</script>
+
+<script>
+setCover=function(e){
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>shrink(r.result,640,d=>{window._cover=d;window._coverUser=true;const pv=$('coverPrv');if(pv){pv.src=d;pv.style.display='block'}$('cpTxt').textContent='تغيير صورة الغلاف'});
+  r.readAsDataURL(f);
+};
+doUpload=async function(){
+  const title=$('upTitle').value.trim();
+  if(!title){toast('❌ اكتب عنوانًا');return}
+  if(!selFile){toast('❌ اختر ملف فيديو أولًا');return}
+  const kind=$('upKind').value;
+  if(kind==='real'&&selFileDur>170){toast('❌ الـ Real أقصى مدة 2:50');return}
+  await ensureChannel();
+  let chId=$('upCh').value||(getCurAcc().channels||[])[0];
+  if(!chId){toast('❌ تعذّر إنشاء قناة');return}
+  const fbtn=$('uploadFbtn'),pw=$('progWrap'),pb=$('progBar'),pt=$('progTxt');
+  const step=(w,t)=>{pb.style.width=w+'%';pt.textContent=t};
+  fbtn.disabled=true;fbtn.textContent='💾 جاري الحفظ...';pw.style.display='block';pt.style.display='block';
+  let ok=false,stored=true;
+  try{
+    const id=uid(),mb=(selFile.size/1048576).toFixed(0);
+    step(15,'فحص المساحة المتاحة...');
+    let free=null;try{const est=await navigator.storage.estimate();free=est.quota-est.usage}catch(e){}
+    step(30,'حفظ الملف ('+mb+' MB)... قد يستغرق دقيقة');
+    try{
+      if(free!==null&&free<selFile.size*1.05)throw new Error('quota');
+      await Promise.race([idbPut('videos',{id,blob:selFile}),new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),90000))]);
+    }catch(e){stored=false;console.warn('video store failed',e)}
+    blobCache[id]=URL.createObjectURL(selFile);
+    step(85,'تجهيز البيانات...');
+    const m=Math.floor(selFileDur/60),sec=Math.floor(selFileDur%60);
+    const dur=selFileDur>0?`${m}:${sec<10?'0':''}${sec}`:'?';
+    const v={id,title,desc:$('upDesc').value,channel:chId,cat:$('upCat').value,views:0,likes:0,dur,type:'local',url:'',thumb:window._cover||'',kind,date:new Date().toISOString().split('T')[0],comments:[]};
+    if(!stored)v.sessionOnly=true;
+    db.videos.unshift(v);
+    try{await saveMeta()}catch(e){db.videos.shift();throw e}
+    step(100,'تم ✓');ok=true;
+    await new Promise(r=>setTimeout(r,400));
+    closeOv('upOv');
+    toast(stored?'🎉 تم حفظ الفيديو':'⚠️ الفيديو معروض في هذه الجلسة فقط — المتصفح رفض تخزين الملف (غالبًا المساحة ممتلئة). افتح الملف في تبويب عادي أو جرّب فيديو أصغر');
+  }catch(e){
+    pt.textContent='❌ فشل الحفظ: '+((e&&e.message)||e);toast('❌ فشل رفع الفيديو');
+  }finally{
+    fbtn.disabled=false;fbtn.textContent='🚀 Save Video Permanently';
+    if(ok){
+      selFile=null;selFileDur=0;window._cover='';window._coverUser=false;
+      $('upTitle').value='';$('upDesc').value='';$('fPrv').style.display='none';
+      const pv=$('coverPrv');if(pv)pv.style.display='none';$('cpTxt').textContent='اختر صورة الغلاف';
+      pw.style.display='none';pt.style.display='none';pb.style.width='0%';
+      goHome();
+    }
+  }
+};
+</script>
+
+<script>
+// no ads
+showAd=function(){};
+skipAd=function(){};
+</script>
+
+<script>
+// stop the video when leaving the watch page
+function stopPlayer(){
+  const p=$('pvid');if(p)p.pause();
+  try{vidPlaying=false;updatePlayBtn()}catch(e){}
+  const f=document.querySelector('#pvWrap iframe');if(f&&f.getAttribute('src'))f.src='';
+}
+const _sp9=showPage;
+showPage=function(n){if(n!=='player')stopPlayer();_sp9(n)};
+</script>
+
+<script>
+// ── offline downloads ──
+const mainEl=$('chatPg');
+if(mainEl&&!$('dlPg'))mainEl.insertAdjacentHTML('afterend','<div id="dlPg" style="display:none"></div>');
+PAGES.push('dl');
+function goDownloads(){showPage('dl');renderDownloads();setNav(null)}
+function renderDownloads(){
+  const list=(db.downloads||[]).map(i=>getVid(i)).filter(Boolean);
+  $('dlPg').innerHTML=`<div class="ctitle rtl" style="margin-bottom:6px">⬇ التنزيلات</div><div class="vst rtl" style="margin-bottom:14px">الفيديوهات هنا بتشتغل من غير إنترنت.</div>`+(list.length?'<div class="grid" id="dlGrid"></div>':'<div class="rtl vst" style="padding:40px 0;text-align:center">لسه ما نزّلتش حاجة. افتح فيديو ودوس ⬇ تنزيل.</div>');
+  if(list.length){renderGrid('dlGrid',list);document.querySelectorAll('#dlGrid .vthumb').forEach(t=>t.insertAdjacentHTML('beforeend','<span class="kind-tag" style="top:auto;bottom:7px">📴 بدون إنترنت</span>'))}
+}
+function paintDl(){const b=document.querySelector('button[onclick="doDownload()"]');if(b)b.textContent=(db.downloads||[]).includes(curVid)?'✅ منزّل':'⬇ تنزيل'}
+doDownload=async function(){
+  const v=getVid(curVid);if(!v)return;
+  db.downloads=db.downloads||[];
+  if(db.downloads.includes(v.id)){db.downloads=db.downloads.filter(x=>x!==v.id);await saveMeta();paintDl();toast('🗑 اتشال من التنزيلات');return}
+  if(v.type!=='local'){toast('ℹ️ فيديوهات يوتيوب محتاجة إنترنت — مينفعش تتنزل');return}
+  if(v.sessionOnly){toast('⚠️ الفيديو ده معروض في الجلسة بس ومش متخزن على الجهاز');return}
+  const r=await idbGet('videos',v.id);
+  if(!r||!r.blob){toast('❌ ملف الفيديو مش موجود على الجهاز ده');return}
+  db.downloads.unshift(v.id);await saveMeta();paintDl();
+  toast('✅ اتنزّل — تقدر تتفرج عليه من غير إنترنت');
+};
+const _ov4=openVid;
+openVid=async function(id){
+  const v=getVid(id);
+  if(v&&!navigator.onLine&&v.type!=='local'&&kindOf(v)!=='post'){toast('📴 الفيديو ده محتاج إنترنت');return}
+  await _ov4(id);paintDl();
+};
+const asd2=$('aside');
+if(asd2)asd2.insertAdjacentHTML('beforeend','<div class="asi" onclick="goDownloads()"><span class="asi-em">⬇</span>التنزيلات</div>');
+// offline indicator
+document.body.insertAdjacentHTML('beforeend','<div id="offBar" style="display:none">📴 غير متصل — الفيديوهات المنزّلة والمنشورات متاحة</div>');
+const updOnline=()=>{$('offBar').style.display=navigator.onLine?'none':'block'};
+window.addEventListener('online',updOnline);window.addEventListener('offline',updOnline);updOnline();
+</script>
+
+<script>
+// ── owners can delete their Bvideos / reals / posts ──
+const isMine=v=>(getCurAcc().channels||[]).includes(v.channel);
+function askDelete(id){
+  const v=getVid(id);if(!v)return;
+  if(!isMine(v)){toast('❌ تقدر تحذف المحتوى بتاعك بس');return}
+  const k=kindOf(v),nm=k==='post'?'المنشور':k==='real'?'الـ Real':'الفيديو';
+  dlg('حذف '+nm,`<p class="feat" style="margin-bottom:12px">هل تريد حذف «${esc(v.title)}» نهائيًا؟ لا يمكن التراجع عن ذلك.</p>`,'🗑 حذف',()=>{doDelete(id)});
+}
+async function doDelete(id){
+  const v=getVid(id);if(!v)return;
+  try{await idbDel('videos',id)}catch(e){}
+  db.videos=db.videos.filter(x=>x.id!==id);
+  ['liked','wl','history','downloads'].forEach(k=>{if(db[k])db[k]=db[k].filter(x=>x!==id)});
+  if(blobCache[id]){try{URL.revokeObjectURL(blobCache[id])}catch(e){}delete blobCache[id]}
+  if(curVid===id){stopPlayer();curVid=null}
+  await saveMeta();closeOv('postOv');toast('🗑 تم الحذف');
+  if($('profPg').style.display==='block')renderProfile();
+  else if($('dlPg')&&$('dlPg').style.display==='block')renderDownloads();
+  else goHome();
+}
+deleteVideo=function(){if(curVid)askDelete(curVid)};
+const _op=openPost;
+openPost=function(id){
+  _op(id);const v=getVid(id),m=document.querySelector('#postOv .modal');
+  if(v&&m&&isMine(v))m.insertAdjacentHTML('beforeend',`<button class="apill" style="margin-top:12px;display:inline-flex" onclick="askDelete('${id}')">🗑 حذف المنشور</button>`);
+};
+const _rp3=renderProfile;
+renderProfile=function(){
+  _rp3();
+  if(profTab==='rec')return;
+  document.querySelectorAll('#pg1 .vcard,#pg1 .pcard').forEach(c=>{
+    const m=(c.getAttribute('onclick')||'').match(/openVid\('([^']+)'\)/);if(!m)return;
+    c.style.position='relative';
+    c.insertAdjacentHTML('beforeend',`<button title="حذف" style="position:absolute;top:8px;left:8px;width:34px;height:34px;border-radius:50%;border:none;background:#000b;color:#fff;font-size:15px;cursor:pointer;z-index:3" onclick="event.stopPropagation();askDelete('${m[1]}')">🗑</button>`);
+  });
+};
+</script>
+
+<script>
+// ── YouTube-style feed ordering ──
+const FEED_SEED=Math.random();
+function hash01(str){let h=2166136261;for(const c of String(str)+FEED_SEED){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return ((h>>>0)%1000)/1000}
+function affinity(){
+  const a={};
+  (db.history||[]).forEach(id=>{const v=getVid(id);if(v)a[v.channel]=(a[v.channel]||0)+1});
+  (db.liked||[]).forEach(id=>{const v=getVid(id);if(v)a[v.channel]=(a[v.channel]||0)+2});
+  return a;
+}
+function feedScore(v,aff,now){
+  const days=Math.max(0,(now-new Date(v.date||now))/864e5);
+  const fresh=Math.exp(-days/14)*3;
+  const pop=Math.log10((v.views||0)+1);
+  const likes=Math.log10((v.likes||0)+1)*.5;
+  const interest=Math.min(4,(aff[v.channel]||0)*1.2);
+  const sub=(db.subs||[]).includes(v.channel)?1.5:0;
+  const seen=(db.history||[]).includes(v.id)?-2.5:0;
+  return fresh+pop+likes+interest+sub+seen+hash01(v.id)*.6;
+}
+function recommend(list){
+  const aff=affinity(),now=Date.now();
+  const pool=list.map(v=>({v,s:feedScore(v,aff,now)})).sort((a,b)=>b.s-a.s);
+  const out=[];let last=null;
+  while(pool.length){
+    let i=pool.findIndex(x=>x.v.channel!==last);if(i<0)i=0;
+    const [x]=pool.splice(i,1);out.push(x.v);last=x.v.channel;
+  }
+  return out;
+}
+getFiltered=function(){
+  const v=[...db.videos];
+  if(curCat==='trending')return v.sort((a,b)=>(b.views||0)-(a.views||0));
+  if(curCat==='subs')return v.filter(x=>(db.subs||[]).includes(x.channel)).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  if(curCat.startsWith('k:'))return recommend(v.filter(x=>kindOf(x)===curCat.slice(2)));
+  if(curCat!=='all')return recommend(v.filter(x=>x.cat===curCat));
+  return recommend(v);
+};
+</script>
+
+<script>
+// ── Reals shelf + Shorts-style viewer ──
+const rlOv=document.createElement('div');rlOv.id='rlOv';document.body.appendChild(rlOv);
+let rlList=[],rlObs=null,rlKey=null;
+function realsAll(){return recommend(db.videos.filter(v=>kindOf(v)==='real'))}
+function renderShelf(){
+  let sh=$('realsShelf');
+  if(!sh){sh=document.createElement('div');sh.id='realsShelf';$('vGrid').insertAdjacentElement('beforebegin',sh)}
+  const rs=realsAll();
+  if(curCat!=='all'||!rs.length){sh.style.display='none';return}
+  sh.style.display='block';
+  sh.innerHTML=`<div class="sh-h">📱 Reals</div><div class="sh-row">${rs.map(v=>`<div class="rcard" onclick="openVid('${v.id}')"><div class="rthumb">${cardThumb(v)}</div><div class="rc-t">${esc(v.title)}</div><div class="rc-v">${fmtV(v.views)} views</div></div>`).join('')}</div>`;
+}
+const _gf5=getFiltered;
+getFiltered=function(){return curCat==='all'?recommend(db.videos.filter(x=>kindOf(x)!=='real')):_gf5()};
+const _rg2=renderGrid;
+renderGrid=function(t,v){
+  if(t){if(t==='vGrid'){const sh=$('realsShelf');if(sh)sh.style.display='none'}return _rg2(t,v)}
+  const list=v||getFiltered();
+  if(!list.length&&db.videos.length){$('vGrid').innerHTML='';renderShelf();return}
+  _rg2(t,v);renderShelf();
+};
+// open reals in the vertical viewer
+const _ov5=openVid;
+openVid=async function(id){
+  const v=getVid(id);
+  if(v&&kindOf(v)==='real'){openReals(id);return}
+  return _ov5(id);
+};
+async function rlLoad(el,id){
+  let u=blobCache[id];
+  if(!u){try{const r=await idbGet('videos',id);if(r&&r.blob)u=blobCache[id]=URL.createObjectURL(r.blob)}catch(e){}}
+  if(u){el.src=u}else{const m=el.parentElement.querySelector('.rl-ico');if(m){m.textContent='⚠️';m.classList.add('show')}}
+}
+function openReals(id){
+  const all=realsAll(),first=all.find(v=>v.id===id);
+  rlList=first?[first,...all.filter(v=>v.id!==id)]:all;
+  rlOv.innerHTML=`<button class="rl-close" onclick="closeReals()">✕</button>
+  <div class="rl-nav"><button onclick="rlGo(-1)">▲</button><button onclick="rlGo(1)">▼</button></div>
+  <div class="rl-scroll" id="rlScroll">${rlList.map((v,i)=>rlItem(v,i)).join('')}</div>`;
+  rlOv.classList.add('on');document.body.style.overflow='hidden';
+  stopPlayer();
+  const sc=$('rlScroll');
+  rlObs=new IntersectionObserver(es=>es.forEach(e=>{
+    const it=e.target,vid=it.querySelector('video');
+    if(e.isIntersecting){
+      if(!vid.src)rlLoad(vid,it.dataset.id);
+      vid.muted=rlMuted();vid.play().catch(()=>{vid.muted=true;vid.play().catch(()=>{})});
+      countView(it.dataset.id);
+      const nx=it.nextElementSibling;if(nx){const nv=nx.querySelector('video');if(nv&&!nv.src)rlLoad(nv,nx.dataset.id)}
+    }else{vid.pause()}
+  }),{root:sc,threshold:.7});
+  sc.querySelectorAll('.rl-item').forEach(it=>{
+    rlObs.observe(it);
+    const vid=it.querySelector('video'),bar=it.querySelector('.rl-prog i');
+    vid.ontimeupdate=()=>{if(vid.duration)bar.style.width=(vid.currentTime/vid.duration*100)+'%'};
+  });
+  document.addEventListener('keydown',rlKeys);
+}
+let _rlMute=false;const rlMuted=()=>_rlMute;
+function rlItem(v,i){
+  const ch=getCh(v.channel)||{name:'Channel'},liked=(db.liked||[]).includes(v.id);
+  return `<div class="rl-item" data-id="${v.id}"><div class="rl-box">
+    <video loop playsinline preload="metadata" onclick="rlTap(this)"></video><div class="rl-ico">▶</div>
+    <div class="rl-info"><b>${esc(ch.name)}</b><p>${esc(v.title)}</p></div>
+    <div class="rl-acts">
+      <button class="${liked?'on':''}" onclick="rlLike('${v.id}',this)">👍<small>${fmtV(v.likes||0)}</small></button>
+      <button onclick="rlMute(this)">${_rlMute?'🔇':'🔊'}</button>
+      <button onclick="rlSave('${v.id}',this)">${(db.downloads||[]).includes(v.id)?'✅':'⬇'}</button>
+      ${isMine(v)?`<button onclick="askDelete('${v.id}')">🗑</button>`:''}
+    </div><div class="rl-prog"><i></i></div></div></div>`;
+}
+function rlTap(vid){
+  const ic=vid.parentElement.querySelector('.rl-ico');
+  if(vid.paused){vid.play();ic.textContent='▶'}else{vid.pause();ic.textContent='⏸'}
+  ic.classList.add('show');setTimeout(()=>ic.classList.remove('show'),500);
+}
+function rlMute(btn){_rlMute=!_rlMute;document.querySelectorAll('#rlOv video').forEach(v=>v.muted=_rlMute);document.querySelectorAll('.rl-acts button:nth-child(2)').forEach(b=>b.textContent=_rlMute?'🔇':'🔊')}
+async function rlLike(id,btn){
+  const v=getVid(id);if(!v)return;db.liked=db.liked||[];
+  if(db.liked.includes(id)){db.liked=db.liked.filter(x=>x!==id);v.likes=Math.max(0,(v.likes||0)-1);btn.classList.remove('on')}
+  else{db.liked.push(id);v.likes=(v.likes||0)+1;btn.classList.add('on')}
+  btn.querySelector('small').textContent=fmtV(v.likes);await saveMeta();
+}
+async function rlSave(id,btn){
+  db.downloads=db.downloads||[];
+  if(db.downloads.includes(id)){db.downloads=db.downloads.filter(x=>x!==id);btn.textContent='⬇';toast('🗑 اتشال من التنزيلات')}
+  else{db.downloads.unshift(id);btn.textContent='✅';toast('✅ اتنزّل — بيشتغل من غير إنترنت')}
+  await saveMeta();
+}
+const rlSeen=new Set();
+async function countView(id){
+  if(rlSeen.has(id))return;rlSeen.add(id);
+  const v=getVid(id);if(!v)return;
+  if(markViewed(id))v.views++;addToHistory(id);await saveMeta();
+}
+function rlGo(d){
+  const sc=$('rlScroll');if(!sc)return;
+  sc.scrollBy({top:d*sc.clientHeight,behavior:'smooth'});
+}
+function rlKeys(e){
+  if(e.key==='ArrowDown'){rlGo(1);e.preventDefault()}
+  else if(e.key==='ArrowUp'){rlGo(-1);e.preventDefault()}
+  else if(e.key==='Escape')closeReals();
+}
+function closeReals(){
+  document.removeEventListener('keydown',rlKeys);
+  if(rlObs){rlObs.disconnect();rlObs=null}
+  rlOv.querySelectorAll('video').forEach(v=>{v.pause();v.removeAttribute('src');v.load()});
+  rlOv.classList.remove('on');rlOv.innerHTML='';document.body.style.overflow='';
+  rlSeen.clear();
+  if($('homePg').style.display!=='none')renderGrid();
+}
+
+// ── clear message when a video can't be played ──
+(function(){
+  const w=$('pvWrap');if(!w)return;
+  w.insertAdjacentHTML('beforeend','<div id="vidErr"></div>');
+  const p=$('pvid');
+  p.addEventListener('error',()=>{
+    const e=$('vidErr');
+    e.textContent=(!p.getAttribute('src'))?'ملف الفيديو مش موجود على الجهاز ده — ممكن يكون الحفظ فشل وقت الرفع. ارفعه تاني.':'المتصفح مش قادر يشغّل صيغة الفيديو دي. غالبًا تسجيل شاشة بصيغة HEVC/MOV. حوّله لـ MP4 (H.264) وارفعه تاني، أو جرّب متصفح تاني.';
+    e.style.display='flex';
+  },true);
+  p.addEventListener('loadeddata',()=>{$('vidErr').style.display='none'});
+  const _o=openVid;
+})();
+const _ov6=openVid;
+openVid=async function(id){const e=$('vidErr');if(e)e.style.display='none';return _ov6(id)};
+// warn at upload time if the browser can't read the file
+const _ofc2=onFileChg;
+onFileChg=function(e){
+  _ofc2(e);const f=e.target.files[0];if(!f)return;
+  if(!$('fWarn'))$('fPrv').insertAdjacentHTML('afterend','<div id="fWarn" class="rtl" style="display:none;color:#f59e0b;font-size:12px;font-weight:700;margin:6px 0"></div>');
+  const w=$('fWarn');w.style.display='none';
+  const pr=document.createElement('video');pr.muted=true;pr.preload='metadata';pr.src=URL.createObjectURL(f);
+  pr.onerror=()=>{w.textContent='⚠️ المتصفح مش قادر يقرأ الفيديو ده (غالبًا HEVC/MOV). غالبًا مش هيشتغل بعد الرفع — حوّله لـ MP4 (H.264) الأول.';w.style.display='block'};
+  pr.onloadedmetadata=()=>{w.style.display='none'};
+};
+</script>
+
+<script>
+const _dd=doDelete;
+doDelete=async function(id){await _dd(id);if(rlOv.classList.contains('on'))closeReals()};
 </script>
 </body>
 </html>
